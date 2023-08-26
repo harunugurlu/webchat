@@ -157,6 +157,11 @@ module.exports = {
       pink: colors.pink,
       rose: colors.rose,
     }),
+    extend: {
+      colors: {
+        'navbar': '#0077B6'
+      }
+    },
     columns: {
       auto: 'auto',
       1: '1',
