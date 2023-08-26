@@ -5,6 +5,11 @@ import { Server as SocketIoServer } from 'socket.io';
 const app = express();
 const server = http.createServer(app);
 const io = new SocketIoServer(server);
+console.log("hello")
+app.get("/", (req, res) => {
+    console.log("req", req)
+    res.send("Server is running")
+})
 
 io.on('connection', (socket) => {
     console.log('New client connected');
