@@ -6,7 +6,7 @@ interface ChatBubbleProps {
 
 export default function ChatBubble(props: ChatBubbleProps) {
 
-    const [messageType, setMessageType] = React.useState<"incoming" | "outgoing">('incoming')
+    const [messageType, setMessageType] = React.useState<"incoming" | "outgoing">('outgoing')
 
     return (
         <div className={`p-4 max-w-sm  h-fit relative chat-bubble-${messageType}`}>
