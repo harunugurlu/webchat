@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import ChatContainer from './components/ChatContainer';
 import Navbar from './components/Navbar';
 
