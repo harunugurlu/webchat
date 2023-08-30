@@ -3,11 +3,15 @@ import http from 'http';
 import { Server as SocketIoServer } from 'socket.io';
 
 const app = express();
-const server = http.createServer(app);
-const io = new SocketIoServer(server);
-console.log("hello")
+const httpServer = http.createServer(app);
+const io = new SocketIoServer(httpServer, {
+    cors: {
+        origin: "http://localhost:3000",
+        methods: ["GET", "POST"]
+    }
+});
+
 app.get("/", (req, res) => {
-    console.log("req", req)
     res.send("Server is running")
 })
 
@@ -17,6 +21,6 @@ io.on('connection', (socket) => {
 });
 
 const PORT = 5000;
-server.listen(PORT, () => {
+httpServer.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
