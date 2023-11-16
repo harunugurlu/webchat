@@ -1,12 +1,15 @@
 import React from 'react'
 
 interface ChatBubbleProps {
-    messageType?: "incoming" | "outgoing"
+    messageTypeProp?: "incoming" | "outgoing"
 }
 
-export default function ChatBubble(props: ChatBubbleProps) {
+export const ChatBubble: React.FC<ChatBubbleProps> = ({ messageTypeProp = "incoming" }) => {
+    const [messageType, setMessageType] = React.useState<"incoming" | "outgoing">("incoming")
 
-    const [messageType, setMessageType] = React.useState<"incoming" | "outgoing">('incoming')
+    React.useEffect(() => {
+        setMessageType(messageTypeProp)
+    }, [])
 
     return (
         <div className={`p-4 max-w-sm  h-fit relative chat-bubble-${messageType}`}>

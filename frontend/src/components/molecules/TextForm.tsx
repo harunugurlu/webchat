@@ -6,7 +6,7 @@ interface TextAreaProps {
     io: Socket;
 }
 
-export const TextArea: React.FC<TextAreaProps> = ({ io }) => {
+export const TextForm: React.FC<TextAreaProps> = ({ io }) => {
     const [message, setMessage] = useState('');
 
     const handleSubmit = useCallback((e: React.FormEvent) => {
