@@ -2,19 +2,20 @@ import React, { useState, useCallback } from 'react';
 import { VscSend } from 'react-icons/vsc';
 import { Socket } from 'socket.io-client';
 
-interface TextAreaProps {
-    io: Socket;
+interface TextFormProps {
+    onNewMessage: (message: string) => void;
 }
 
-export const TextForm: React.FC<TextAreaProps> = ({ io }) => {
+export const TextForm: React.FC<TextFormProps> = ({ onNewMessage }) => {
     const [message, setMessage] = useState('');
 
     const handleSubmit = useCallback((e: React.FormEvent) => {
         e.preventDefault();
-        console.log("text: ", message);
-        io.emit('chat message', message);
-        setMessage(''); // Clear the text area after sending
-    }, [message, io]);
+        if (message.trim()) {
+          onNewMessage(message);
+          setMessage('');
+        }
+    }, [message, onNewMessage]);
 
     const handleKeyPress = useCallback((e: React.KeyboardEvent) => {
         if (e.key === 'Enter' && !e.shiftKey) {
