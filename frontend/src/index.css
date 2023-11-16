@@ -35,7 +35,7 @@ code {
   height: 0;
   border-style: solid;
   border-width: 20px 0px 0px 20px;
-  border-color: rgb(96 165 250 / var(--tw-bg-opacity)) transparent transparent transparent; /* This color should match your chat bubble's background */
+  border-color: rgb(74 222 128 / var(--tw-bg-opacity)) transparent transparent transparent; /* This color should match your chat bubble's background */
   filter: drop-shadow(0 2px 0px rgba(0, 0, 0, 0.212)); /* This emulates shadow-sm */
   right: 20px; /* Adjust as necessary */
   bottom: 0px; /* Adjust to position the tail correctly */
