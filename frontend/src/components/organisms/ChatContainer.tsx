@@ -1,6 +1,6 @@
 import React from 'react'
-import ChatBubble from './ChatBubble'
-import { TextArea } from './TextArea'
+import ChatBubble from '../atoms/ChatBubble'
+import { TextArea } from '../molecules/TextArea'
 import { Socket } from 'socket.io-client'
 
 interface ChatContainerProps {

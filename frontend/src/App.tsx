@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { socket } from './socket'
-import { ChatContainer } from './components/ChatContainer';
+import { ChatContainer } from './components/organisms/ChatContainer';
 import Navbar from './components/Navbar';
 
 
