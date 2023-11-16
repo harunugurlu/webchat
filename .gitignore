@@ -16,6 +16,9 @@ npm-debug.log
 *.swp
 *.swo
 
+# .env files
+/backend/.env
+
 # OS-specific
 .DS_Store
 Thumbs.db
