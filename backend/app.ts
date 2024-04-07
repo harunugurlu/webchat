@@ -34,12 +34,18 @@ class App {
 
         // Other routes will come here
         this.express.use('/chat', chatRoutes);
+        this.express.post('/sendMessage', (req, res) => {
+            const { message } = req.body;
+            console.log("message: ", message);
+            this.io.emit('chat message', message);
+            res.status(200).json({ message: `Message sent, message: ${message}` });
+        })
     }
 
     private configureSocket(): void {
         this.io.on('connection', (socket) => {
             console.log('A user connected');
-
+            console.log(`socket ${socket.id} connected`);
             socket.on('chat message', (msg) => {
                 console.log('message: ' + msg);
                 socket.emit('chat message', msg)

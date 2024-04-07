@@ -3,19 +3,20 @@ import { VscSend } from 'react-icons/vsc';
 import { Socket } from 'socket.io-client';
 
 interface TextFormProps {
-    onNewMessage: (message: string) => void;
+    onOutgoingMessage: (message: string) => void;
+    onIncomingMessage: (message: string) => void;
 }
 
-export const TextForm: React.FC<TextFormProps> = ({ onNewMessage }) => {
-    const [message, setMessage] = useState('');
+export const TextForm: React.FC<TextFormProps> = ({ onOutgoingMessage }) => {
+    const [outgoingMessage, setOutgoingMessage] = useState('');
 
     const handleSubmit = useCallback((e: React.FormEvent) => {
         e.preventDefault();
-        if (message.trim()) {
-          onNewMessage(message);
-          setMessage('');
+        if (outgoingMessage.trim()) {
+            onOutgoingMessage(outgoingMessage);
+            setOutgoingMessage('');
         }
-    }, [message, onNewMessage]);
+    }, [outgoingMessage, onOutgoingMessage]);
 
     const handleKeyPress = useCallback((e: React.KeyboardEvent) => {
         if (e.key === 'Enter' && !e.shiftKey) {
@@ -31,8 +32,8 @@ export const TextForm: React.FC<TextFormProps> = ({ onNewMessage }) => {
                     id='textarea' 
                     placeholder='Send your message...' 
                     className="w-full flex-grow-2 h-20 focus:outline-none resize-none"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
+                    value={outgoingMessage}
+                    onChange={(e) => setOutgoingMessage(e.target.value)}
                     onKeyPress={handleKeyPress}
                 />
                 <button 

@@ -17,16 +17,20 @@ export const ChatContainer: React.FC<ChatContainerProps> = ({ io }) => {
     console.log("outgoing message: ", newMessage)
   }, [io]);
 
-  // useEffect(() => {
+
+  // useCallback((incomingMessage: string) => {
   //   io.on('chat message', (incomingMessage: string) => {
   //     setMessages((prevMessages) => [...prevMessages, incomingMessage]);
-  //     console.log("incoming message: ", incomingMessage)
-  //   });
-  // }, [io]);
-
-  useCallback((incomingMessage: string) => {
+  //   })
+  // }, [io])
+  io.on('chat message', (incomingMessage: string) => {
+    setMessages((prevMessages) => [...prevMessages, incomingMessage]);
+    console.log("incoming message", incomingMessage);
+  })
+  const handleIncomingMessage =   useCallback(() => {
     io.on('chat message', (incomingMessage: string) => {
       setMessages((prevMessages) => [...prevMessages, incomingMessage]);
+      console.log("incoming message", incomingMessage);
     })
   }, [io])
 
@@ -37,7 +41,7 @@ export const ChatContainer: React.FC<ChatContainerProps> = ({ io }) => {
           <ChatBubble key={index} message={message}/>
         ))}
       </div>
-      <TextForm onNewMessage={handleOutgoingMessage} />
+      <TextForm onOutgoingMessage={handleOutgoingMessage} onIncomingMessage={handleIncomingMessage} />
     </div>
   );
 };
